@@ -8,7 +8,7 @@ const useProducts = (link) => {
         .then(res=>res.json())
         .then(data=>setItem(data))
     },[link, url])
-    return [item];
+    return [item, setItem];
 };
 
 export default useProducts;

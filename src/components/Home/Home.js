@@ -1,19 +1,18 @@
 import React from "react";
-import {  Carousel, Row } from "react-bootstrap";
+import {  Button, Carousel, Row } from "react-bootstrap";
 import useProducts from "../../hooks/useProducts";
 import Product from "../Product/Product";
 import './Home.css'
 import AboutPadals from './../AboutPadals/AboutPadals';
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
     const [products] = useProducts('products');
     const [abouts] = useProducts('abouts');
-    // useEffect(()=>{
-    //     const url = `http://localhost:5000/products`;
-    //     fetch(url)
-    //     .then(res=>res.json())
-    //     .then(data=>setProducts(data))
-    // },[])
+    const handleSeeAll =()=>{
+      navigate('/manageInventory')
+    }
   return (
     <div>
       <Carousel fade>
@@ -55,16 +54,19 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-
-      {/* <CardGroup className='container my-5 product-cont'> */}
-      <Row xs={1} md={2} lg={3} className="container mx-auto g-4">
+      <h1 className='text-center my-3'>Padals Products</h1>
+      <Row xs={1} md={2} lg={3} className="container mx-auto">
 
       {
-          products.map(p=><Product key={p._id} item={p}></Product>)
+          products.slice(0, 6).map(p=><Product key={p._id} item={p}></Product>)
       }
-      {/* // </CardGroup> */}
       </Row>
-        <h1 className='text-center'>About Padals</h1>
+      <div className='container text-center my-2'>
+
+      <Button  onClick={handleSeeAll} variant="primary">See All</Button>
+      </div>
+      <hr className='container' />
+        <h1 className='text-center my-3'>About Padals</h1>
       
       <Row xs={1} md={2} lg={3} className="container  mx-auto g-4">
       {

@@ -9,6 +9,8 @@ import NotFound from './components/NotFound/NotFound';
 import Home from './components/Home/Home';
 import AddItem from './components/AddItem/AddItem';
 import RequireAuth from './components/RequireAuth/RequireAuth';
+import ProductDetails from './components/ProductDetails/ProductDetails';
+import AllProducts from "./components/AllProducts/AllProducts";
 
 function App() {
   return (
@@ -19,9 +21,19 @@ function App() {
         <Route path="/signup" element={<Signup></Signup>}></Route>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
+        <Route path="/manageInventory" element={
+          <RequireAuth>
+            <AllProducts></AllProducts>
+          </RequireAuth>
+        }></Route>
         <Route path="/addItem" element={
           <RequireAuth>
             <AddItem></AddItem>
+          </RequireAuth>
+        }></Route>
+        <Route path="/productDetails/:productId" element={
+          <RequireAuth>
+            <ProductDetails></ProductDetails>
           </RequireAuth>
         }></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>

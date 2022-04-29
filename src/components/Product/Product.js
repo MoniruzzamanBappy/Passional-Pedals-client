@@ -1,9 +1,14 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
 import "./Product.css"
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({item}) => {
-    const{supplierName, productName, description, img, price, quantity}=item
+  const navigate = useNavigate();
+    const{supplierName, productName, description,_id, img, price, quantity}=item
+    const handleSeeMore =(id)=>{
+      navigate(`/productDetails/${id}`);
+    }
   return (
     
       <Card className="product-item">
@@ -16,7 +21,7 @@ const Product = ({item}) => {
           <Card.Text>{description}</Card.Text>
         </Card.Body>
         <Card.Footer>
-        <Button variant="primary">See more</Button>
+        <Button onClick={()=>handleSeeMore(_id)} variant="primary">See more</Button>
         </Card.Footer>
       </Card>
   );
