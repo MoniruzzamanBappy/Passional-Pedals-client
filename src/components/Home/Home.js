@@ -1,7 +1,16 @@
-import React from "react";
-import { Carousel } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { CardGroup, Carousel } from "react-bootstrap";
+import Product from "../Product/Product";
+import './Home.css'
 
 const Home = () => {
+    const [products, setProducts] = useState([])
+    useEffect(()=>{
+        const url = `http://localhost:5000/products`;
+        fetch(url)
+        .then(res=>res.json())
+        .then(data=>setProducts(data))
+    },[])
   return (
     <div>
       <Carousel fade>
@@ -43,6 +52,13 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+
+      <CardGroup className='container my-5 product-cont'>
+
+      {
+          products.map(p=><Product key={p._id} item={p}></Product>)
+      }
+      </CardGroup>
     </div>
   );
 };

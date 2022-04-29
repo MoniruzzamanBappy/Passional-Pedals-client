@@ -5,19 +5,30 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 const AddItem = () => {
     const [user] = useAuthState(auth);
-    console.log(user);
     const handleSubmit = e =>{
         e.preventDefault();
         
         const supplierName = e.target.sname.value;
-        const productName = e.target.pemail.value;
+        const productName = e.target.pname.value;
         const email = e.target.email.value;
         const description = e.target.description.value;
         const price = e.target.price.value;
         const img = e.target.img.value;
         const quantity = e.target.quantity.value;
         const item = {supplierName, productName, email, description, img, price, quantity}
-        console.log(item);
+        
+        fetch('http://localhost:5000/products', {
+             method: 'POST',
+             headers:{
+                 'content-type': 'application/json'
+             },
+             body: JSON.stringify(item)
+         })
+         .then(res=>res.json())
+         .then(data=>{
+            alert('User added successfully');
+            e.target.reset()
+         })
     }
     return (
         <Form onSubmit={handleSubmit} className="w-50 mx-auto my-3">
