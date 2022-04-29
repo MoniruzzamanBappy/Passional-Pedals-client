@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { CardGroup, Carousel } from "react-bootstrap";
+import React from "react";
+import {  Carousel, Row } from "react-bootstrap";
+import useProducts from "../../hooks/useProducts";
 import Product from "../Product/Product";
 import './Home.css'
+import AboutPadals from './../AboutPadals/AboutPadals';
 
 const Home = () => {
-    const [products, setProducts] = useState([])
-    useEffect(()=>{
-        const url = `http://localhost:5000/products`;
-        fetch(url)
-        .then(res=>res.json())
-        .then(data=>setProducts(data))
-    },[])
+    const [products] = useProducts('products');
+    const [abouts] = useProducts('abouts');
+    // useEffect(()=>{
+    //     const url = `http://localhost:5000/products`;
+    //     fetch(url)
+    //     .then(res=>res.json())
+    //     .then(data=>setProducts(data))
+    // },[])
   return (
     <div>
       <Carousel fade>
@@ -53,12 +56,23 @@ const Home = () => {
         </Carousel.Item>
       </Carousel>
 
-      <CardGroup className='container my-5 product-cont'>
+      {/* <CardGroup className='container my-5 product-cont'> */}
+      <Row xs={1} md={2} lg={3} className="container mx-auto g-4">
 
       {
           products.map(p=><Product key={p._id} item={p}></Product>)
       }
-      </CardGroup>
+      {/* // </CardGroup> */}
+      </Row>
+        <h1 className='text-center'>About Padals</h1>
+      
+      <Row xs={1} md={2} lg={3} className="container  mx-auto g-4">
+      {
+         abouts.map(p=><AboutPadals key={p._id} item={p}></AboutPadals>)
+      }
+      </Row>
+     
+
     </div>
   );
 };
