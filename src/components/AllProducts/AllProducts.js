@@ -1,10 +1,15 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import useProducts from "../../hooks/useProducts";
 import AllProduct from "../AllProduct/AllProduct";
+import { useNavigate } from 'react-router-dom';
 
 const AllProducts = () => {
   const [products, setProducts] = useProducts("products");
+  const navigate = useNavigate();
+  const handleAddItem = ()=>{
+    navigate(`/addItem`)
+  }
   const handleDelete = (id)=>{
     const process = window.confirm('Are you sure?')
     if(process){
@@ -18,6 +23,7 @@ const AllProducts = () => {
             setProducts(remaining);
         })
     }
+    
   }
   return (
     <div>
@@ -38,6 +44,9 @@ const AllProducts = () => {
           ))}
         </tbody>
       </Table>
+      <div className="container my-4">
+        <Button onClick={handleAddItem} variant="primary">Add Item</Button>
+        </div>
     </div>
   );
 };
