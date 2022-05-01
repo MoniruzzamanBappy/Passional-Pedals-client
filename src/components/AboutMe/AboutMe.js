@@ -12,7 +12,7 @@ const AboutMe = () => {
                 <div className="card-body">
                   <div className="d-flex flex-column align-items-center text-center">
                     <img
-                      src="./bappy.jpg"
+                      src={'https://i.ibb.co/sys4gPL/bappy.jpg'}
                       alt="Admin"
                       className="rounded-circle p-1 bg-primary"
                       width="110"

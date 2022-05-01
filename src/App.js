@@ -13,6 +13,7 @@ import ProductDetails from './components/ProductDetails/ProductDetails';
 import AllProducts from "./components/AllProducts/AllProducts";
 import MyItems from "./components/MyItems/MyItems";
 import Blogs from "./components/Blogs/Blogs";
+import AboutMe from "./components/AboutMe/AboutMe";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<Signup></Signup>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+        <Route path="/aboutMe" element={<AboutMe></AboutMe>}></Route>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
         <Route path="/manageInventory" element={
