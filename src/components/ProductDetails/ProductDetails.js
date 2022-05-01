@@ -1,27 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import useProductDetails from './../../hooks/useProductDetails';
 
 const ProductDetails = () => {
   const { productId } = useParams();
   const { register, handleSubmit } = useForm();
-  // const [upQuantity, setUpQuantity] = useState();
-  // const [product] = useProductDetails(productId);
-
-  // setUpQuantity(quantity);
-
-  const [product, setProduct] = useState({});
+  const [product] = useProductDetails(productId);
+  
   const { supplierName, productName, description, _id, img, price, quantity } =
-    product;
-  function getProduct() {
-    const url = `http://localhost:5000/products/${productId}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
-  }
-
-  getProduct();
+  product;
+ console.log(product);
   const handleDelivered = (id) => {
     const deliveredQuantity = quantity - 1;
     const url = `http://localhost:5000/products/${id}`;
@@ -36,8 +26,7 @@ const ProductDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         alert("Product Delivered successfully");
-        getProduct();
-        // setUpQuantity(data);
+        
       });
   };
 
@@ -54,8 +43,7 @@ const ProductDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         alert("Product added successfully");
-        getProduct();
-        // setUpQuantity(data);
+       
       });
   };
 
@@ -72,6 +60,7 @@ const ProductDetails = () => {
           <Card.Title>{productName}</Card.Title>
           <Card.Text>Supplier: {supplierName}</Card.Text>
           <Card.Text>Price: {price}</Card.Text>
+          
           <Card.Text>Quantity: {quantity}</Card.Text>
           <Card.Text>{description}</Card.Text>
         </Card.Body>

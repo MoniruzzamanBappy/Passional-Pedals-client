@@ -11,6 +11,7 @@ import AddItem from './components/AddItem/AddItem';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import AllProducts from "./components/AllProducts/AllProducts";
+import MyItems from "./components/MyItems/MyItems";
 
 function App() {
   return (
@@ -24,6 +25,11 @@ function App() {
         <Route path="/manageInventory" element={
           <RequireAuth>
             <AllProducts></AllProducts>
+          </RequireAuth>
+        }></Route>
+        <Route path="/myItems" element={
+          <RequireAuth>
+            <MyItems></MyItems>
           </RequireAuth>
         }></Route>
         <Route path="/addItem" element={
