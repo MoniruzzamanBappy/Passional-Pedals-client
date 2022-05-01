@@ -7,7 +7,7 @@ const Product = ({item}) => {
   const navigate = useNavigate();
     const{supplierName, productName, description,_id, img, price, quantity}=item
     const handleSeeMore =(id)=>{
-      navigate(`/productDetails/${id}`);
+      navigate(`/inventory/${id}`);
     }
   return (
     
@@ -21,7 +21,7 @@ const Product = ({item}) => {
           <Card.Text>{description}</Card.Text>
         </Card.Body>
         <Card.Footer>
-        <Button onClick={()=>handleSeeMore(_id)} variant="primary">See more</Button>
+        <Button onClick={()=>handleSeeMore(_id)} variant="primary">Update</Button>
         </Card.Footer>
       </Card>
   );

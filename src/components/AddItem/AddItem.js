@@ -18,7 +18,7 @@ const AddItem = () => {
         const quantity = e.target.quantity.value;
         const item = {supplierName, productName, email, description, img, price, quantity}
         
-        fetch('http://localhost:5000/products', {
+        fetch('https://tranquil-refuge-32723.herokuapp.com/products', {
              method: 'POST',
              headers:{
                  'content-type': 'application/json'

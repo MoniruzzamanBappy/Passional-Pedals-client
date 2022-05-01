@@ -12,7 +12,7 @@ const MyItems = () => {
   const [products, setProducts] = useState([]);
     const getOrders = async () => {
       const email = user?.email;
-      const url = `http://localhost:5000/products?email=${email}`;
+      const url = `https://tranquil-refuge-32723.herokuapp.com/products?email=${email}`;
       const { data } = await axios.get(url);
       setProducts(data);
     };
@@ -20,7 +20,7 @@ const MyItems = () => {
   const handleDelete = (id) => {
     const process = window.confirm("Are you sure?");
     if (process) {
-      const url = `http://localhost:5000/products/${id}`;
+      const url = `https://tranquil-refuge-32723.herokuapp.com/products/${id}`;
       fetch(url, {
         method: "DELETE",
       })

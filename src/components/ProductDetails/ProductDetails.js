@@ -17,7 +17,7 @@ const ProductDetails = () => {
 //  console.log(product);
   const handleDelivered = async (id) => {
     const deliveredQuantity = quantity - 1;
-    const url = `http://localhost:5000/products/${id}`;
+    const url = `https://tranquil-refuge-32723.herokuapp.com/products/${id}`;
 
     // fetch(url, {
     //   method: "PUT",
@@ -40,7 +40,7 @@ const ProductDetails = () => {
 
   const onSubmit =async (fdata) => {
     const deliveredQuantity = parseInt(quantity) + parseInt(fdata.quantity);
-    const url = `http://localhost:5000/products/${_id}`;
+    const url = `https://tranquil-refuge-32723.herokuapp.com/products/${_id}`;
     // fetch(url, {
     //   method: "PUT",
     //   headers: {

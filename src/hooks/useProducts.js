@@ -2,7 +2,7 @@ import  { useEffect, useState } from 'react';
 
 const useProducts = (link) => {
     const [item, setItem] = useState([])
-    const url= `http://localhost:5000/${link}`;
+    const url= `https://tranquil-refuge-32723.herokuapp.com/${link}`;
     useEffect(()=>{
         fetch(url)
         .then(res=>res.json())

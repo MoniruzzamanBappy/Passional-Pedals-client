@@ -14,7 +14,7 @@ const AllProducts = () => {
   const handleDelete = (id) => {
     const process = window.confirm("Are you sure?");
     if (process) {
-      const url = `http://localhost:5000/products/${id}`;
+      const url = `https://tranquil-refuge-32723.herokuapp.com/products/${id}`;
       fetch(url, {
         method: "DELETE",
       })
