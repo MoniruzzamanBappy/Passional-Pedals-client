@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -8,44 +9,54 @@ import useProductDetails from './../../hooks/useProductDetails';
 const ProductDetails = () => {
   const { productId } = useParams();
   const { register, handleSubmit } = useForm();
-  const [product] = useProductDetails(productId);
+  const [product, setProduct] = useProductDetails(productId);
   
   const { supplierName, productName, description, _id, img, price, quantity } =
   product;
- console.log(product);
-  const handleDelivered = (id) => {
+  let q = quantity;
+//  console.log(product);
+  const handleDelivered = async (id) => {
     const deliveredQuantity = quantity - 1;
     const url = `http://localhost:5000/products/${id}`;
 
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ deliveredQuantity }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        toast("Product Delivered successfully");
+    // fetch(url, {
+    //   method: "PUT",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify({ deliveredQuantity }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     toast("Product Delivered successfully");
         
-      });
+    //   });
+
+    const {data} = await axios.put(url, {deliveredQuantity});
+    setProduct(data);
+    toast("Product delivered successfully");
+
   };
 
-  const onSubmit = (data) => {
-    const deliveredQuantity = parseInt(quantity) + parseInt(data.quantity);
+  const onSubmit =async (fdata) => {
+    const deliveredQuantity = parseInt(quantity) + parseInt(fdata.quantity);
     const url = `http://localhost:5000/products/${_id}`;
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ deliveredQuantity }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        toast("Product added successfully");
+    // fetch(url, {
+    //   method: "PUT",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify({ deliveredQuantity }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     toast("Product added successfully");
        
-      });
+    //   });
+    const {data} = await axios.put(url, {deliveredQuantity});
+    setProduct(data);
+    toast("Quantity added successfully");
+    fdata.target.reset()
   };
 
   return (
@@ -62,7 +73,7 @@ const ProductDetails = () => {
           <Card.Text>Supplier: {supplierName}</Card.Text>
           <Card.Text>Price: {price}</Card.Text>
           
-          <Card.Text>Quantity: {quantity}</Card.Text>
+          <Card.Text>Quantity: {q}</Card.Text>
           <Card.Text>{description}</Card.Text>
         </Card.Body>
       </Card>

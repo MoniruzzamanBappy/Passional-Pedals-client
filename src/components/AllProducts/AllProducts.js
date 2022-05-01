@@ -3,6 +3,7 @@ import { Button, Table } from "react-bootstrap";
 import useProducts from "../../hooks/useProducts";
 import AllProduct from "../AllProduct/AllProduct";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AllProducts = () => {
   const [products, setProducts] = useProducts("products");
@@ -21,6 +22,7 @@ const AllProducts = () => {
         .then((data) => {
           const remaining = products.filter((p) => p._id !== id);
           setProducts(remaining);
+          toast('Deleted a product')
         });
     }
   };

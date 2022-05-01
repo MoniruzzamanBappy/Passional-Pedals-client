@@ -4,6 +4,7 @@ import auth from "./../../firebase.init";
 import { Table } from "react-bootstrap";
 import AllProduct from "../AllProduct/AllProduct";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const MyItems = () => {
   const [user] = useAuthState(auth);
@@ -27,6 +28,7 @@ const MyItems = () => {
         .then((data) => {
           const remaining = products.filter((p) => p._id !== id);
           setProducts(remaining);
+          toast('Deleted a product')
         });
     }
   };
