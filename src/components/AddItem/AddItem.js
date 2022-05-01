@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 
 const AddItem = () => {
     const [user] = useAuthState(auth);
@@ -26,7 +27,7 @@ const AddItem = () => {
          })
          .then(res=>res.json())
          .then(data=>{
-            alert('User added successfully');
+            toast("Product added successfully easy!");
             e.target.reset()
          })
     }

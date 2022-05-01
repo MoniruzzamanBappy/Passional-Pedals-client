@@ -14,6 +14,8 @@ import AllProducts from "./components/AllProducts/AllProducts";
 import MyItems from "./components/MyItems/MyItems";
 import Blogs from "./components/Blogs/Blogs";
 import AboutMe from "./components/AboutMe/AboutMe";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -49,6 +51,7 @@ function App() {
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer />
     </div>
   );
 }

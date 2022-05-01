@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import useProductDetails from './../../hooks/useProductDetails';
 
 const ProductDetails = () => {
@@ -25,7 +26,7 @@ const ProductDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        alert("Product Delivered successfully");
+        toast("Product Delivered successfully");
         
       });
   };
@@ -42,7 +43,7 @@ const ProductDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        alert("Product added successfully");
+        toast("Product added successfully");
        
       });
   };
