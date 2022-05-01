@@ -2,12 +2,13 @@ import axios from "axios";
 import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import useProductDetails from './../../hooks/useProductDetails';
 
 const ProductDetails = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [product, setProduct] = useProductDetails(productId);
   
@@ -58,6 +59,9 @@ const ProductDetails = () => {
     toast("Quantity added successfully");
     fdata.target.reset()
   };
+  const handleSeeAll =()=>{
+    navigate('/manageInventory')
+  }
 
   return (
     <div>
@@ -91,6 +95,9 @@ const ProductDetails = () => {
             <input type="submit" />
           </form>
         </div>
+      </div>
+      <div className="mx-auto w-25 my-4">
+      <Button  onClick={handleSeeAll} variant="primary">Manage Inventory</Button>
       </div>
     </div>
   );

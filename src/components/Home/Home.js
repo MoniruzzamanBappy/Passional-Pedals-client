@@ -63,7 +63,7 @@ const Home = () => {
       </Row>
       <div className='container text-center my-2'>
 
-      <Button  onClick={handleSeeAll} variant="primary">See All</Button>
+      <Button  onClick={handleSeeAll} variant="primary">Manage Inventory</Button>
       </div>
       <hr className='container' />
         <h1 className='text-center my-3'>About Padals</h1>
