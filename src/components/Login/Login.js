@@ -11,6 +11,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "../Loading/Loading";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
   const emailRef = useRef("");
@@ -23,14 +24,15 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail, sending, error1] =
     useSendPasswordResetEmail(auth);
+  const [token] = useToken(user);
   const handleToSignup = () => {
     navigate("/signup");
   };
-  const handleLoginSubmit = (event) => {
+  const handleLoginSubmit = async (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passRef.current.value;
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
   };
   const handleToForgotPassword = async () => {
     const email = emailRef.current.value;
@@ -42,8 +44,8 @@ const Login = () => {
       toast("Please Type Your Email");
     }
   };
-  if(loading || sending){
-    <Loading></Loading>
+  if (loading || sending) {
+    <Loading></Loading>;
   }
   if (error || error1) {
     errorElement = (
@@ -52,7 +54,7 @@ const Login = () => {
       </div>
     );
   }
-  if (user) {
+  if (token) {
     navigate(from, { replace: true });
   }
   return (

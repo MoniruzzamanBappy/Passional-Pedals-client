@@ -6,6 +6,7 @@ import { BsFacebook } from 'react-icons/bs';
 import { BsGithub } from 'react-icons/bs';
 import auth from "../../firebase.init";
 import Loading from './../Loading/Loading';
+import useToken from "../../hooks/useToken";
 
 
 const SocialLogin = () => {
@@ -14,6 +15,7 @@ const SocialLogin = () => {
   const [signInWithFacebook, user2, loading2, error2] = useSignInWithFacebook(auth);
   const navigate = useNavigate();
   const location = useLocation();
+  const [token] = useToken(user|| user1|| user2)
   let from = location.state?.from?.pathname || "/";
   let errorElement;
   if (error || error1 || error2) {
@@ -25,7 +27,7 @@ const SocialLogin = () => {
   if(loading || loading1 || loading2){
     return <Loading></Loading>
   }
-  if(user || user1 || user2){
+  if(token){
     navigate(from, { replace: true });
   }
 

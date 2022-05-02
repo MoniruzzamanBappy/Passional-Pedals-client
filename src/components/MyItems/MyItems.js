@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 
 const MyItems = () => {
   const [user] = useAuthState(auth);
-  console.log(user.email);
   const [products, setProducts] = useState([]);
     const getOrders = async () => {
       const email = user?.email;
