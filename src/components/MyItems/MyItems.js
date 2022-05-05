@@ -5,6 +5,7 @@ import { Table } from "react-bootstrap";
 import AllProduct from "../AllProduct/AllProduct";
 import axios from "axios";
 import { toast } from "react-toastify";
+import PageTitle from "../PageTitle/PageTitle";
 
 const MyItems = () => {
   const [user] = useAuthState(auth);
@@ -33,6 +34,7 @@ const MyItems = () => {
   };
   return (
     <div>
+      <PageTitle title="My Items"></PageTitle>
       <h1 className="text-center">My Products</h1>
       <Table className="container my-4" bordered hover>
         <thead>

@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import PageTitle from '../PageTitle/PageTitle';
 
 const AddItem = () => {
     const [user] = useAuthState(auth);
@@ -33,6 +34,7 @@ const AddItem = () => {
     }
     return (
         <Form onSubmit={handleSubmit} className="w-50 mx-auto my-3">
+          <PageTitle title="Add Item"></PageTitle>
         <Form.Group className="mb-3"controlId="formGridName">
           <Form.Label>Supplier Name</Form.Label>
           <Form.Control required name='sname' type="text" placeholder="Supplier Name" />

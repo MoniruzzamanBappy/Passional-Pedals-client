@@ -1,9 +1,11 @@
 import React from "react";
+import PageTitle from "../PageTitle/PageTitle";
 import './AboutMe.css'
 
 const AboutMe = () => {
   return (
     <div className='my-5'>
+      <PageTitle title="About"></PageTitle>
       <div className="container">
         <div className="main-body">
           <div className="row">

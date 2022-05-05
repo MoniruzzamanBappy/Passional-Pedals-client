@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "../Loading/Loading";
 import useToken from "../../hooks/useToken";
+import PageTitle from "../PageTitle/PageTitle";
 
 const Login = () => {
   const emailRef = useRef("");
@@ -59,6 +60,7 @@ const Login = () => {
   }
   return (
     <div className="login-form mt-0 pt-0">
+      <PageTitle title="Login"></PageTitle>
       <h1 className="text-center">Please Login</h1>
       <Form
         onSubmit={handleLoginSubmit}

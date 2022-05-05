@@ -10,6 +10,7 @@ import SocialLogin from "./../SocialLogin/SocialLogin";
 import Loading from "./../Loading/Loading";
 import { useLocation } from "react-router-dom";
 import useToken from "../../hooks/useToken";
+import PageTitle from "../PageTitle/PageTitle";
 
 const Signup = () => {
   const [match, setMatch] = useState("");
@@ -58,6 +59,7 @@ const Signup = () => {
   }
   return (
     <div className="login-form">
+      <PageTitle title="Sign up"></PageTitle>
       <h1 className="text-center">Please Create an Account</h1>
       <Form
         onSubmit={handleSignupSubmit}

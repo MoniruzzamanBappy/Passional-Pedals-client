@@ -4,6 +4,7 @@ import { Button, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import PageTitle from "../PageTitle/PageTitle";
 import useProductDetails from './../../hooks/useProductDetails';
 
 const ProductDetails = () => {
@@ -65,6 +66,7 @@ const ProductDetails = () => {
 
   return (
     <div>
+      <PageTitle title="Product Details"></PageTitle>
       <Card className="container mx-auto my-4">
         <Card.Img
           className="mx-auto"

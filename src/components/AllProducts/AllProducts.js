@@ -4,6 +4,7 @@ import useProducts from "../../hooks/useProducts";
 import AllProduct from "../AllProduct/AllProduct";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import PageTitle from "../PageTitle/PageTitle";
 
 const AllProducts = () => {
   const [products, setProducts] = useProducts("products");
@@ -28,6 +29,7 @@ const AllProducts = () => {
   };
   return (
     <div>
+      <PageTitle title="Manage Inventory"></PageTitle>
       <h1 className="text-center">All Products</h1>
       <Table className="container my-4" bordered hover>
         <thead>

@@ -1,8 +1,12 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 
 const NotFound = () => {
   return (
     <main className="bg-white relative overflow-hidden h-screen relative">
+      <Helmet>
+        <title>404 - Page Not Found</title>
+      </Helmet>
       <div className="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-32">
         <div className="container mx-auto px-6 flex flex-col justify-between items-center relative">
           <div className="flex w-full items-center justify-center space-x-12 flex-col md:flex-row mb-16 md:mb-8">

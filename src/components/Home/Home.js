@@ -7,6 +7,7 @@ import AboutPadals from "./../AboutPadals/AboutPadals";
 import { useNavigate } from "react-router-dom";
 import Feature from "../Feature/Feature";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -22,6 +23,9 @@ const Home = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>Passional Pedals</title>
+      </Helmet>
       <Carousel fade>
         <Carousel.Item>
           <img
