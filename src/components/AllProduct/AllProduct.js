@@ -8,7 +8,7 @@ const AllProduct = ({item, handleDelete}) => {
           <td>{productName}</td>
           <td>{supplierName}</td>
           <td>{price}</td>
-          <td>{quantity}</td>
+          <td>{quantity>0 ? quantity:'sold out'}</td>
           <td className='btn bg-danger mx-auto text-center' onClick={()=>handleDelete(_id)}><AiFillDelete/></td>
         </tr>
     );

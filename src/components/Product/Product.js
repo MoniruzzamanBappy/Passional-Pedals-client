@@ -16,7 +16,7 @@ const Product = ({item}) => {
         <Card.Body>
           <Card.Title>Name: {productName}</Card.Title>
           <Card.Text>Supplier: {supplierName}</Card.Text>
-          <Card.Text>Quantity: {quantity}</Card.Text>
+          <Card.Text>Quantity: {quantity>0 ? quantity:'sold out'}</Card.Text>
           <Card.Text>Price: {price}</Card.Text>
           <Card.Text>{description}</Card.Text>
         </Card.Body>
