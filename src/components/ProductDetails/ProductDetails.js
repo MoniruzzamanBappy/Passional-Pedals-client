@@ -10,7 +10,7 @@ import useProductDetails from './../../hooks/useProductDetails';
 const ProductDetails = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const { register,reset, handleSubmit } = useForm();
   const [product, setProduct] = useProductDetails(productId);
   
   const { supplierName, productName, description, _id, img, price, quantity } =
@@ -41,24 +41,18 @@ const ProductDetails = () => {
   };
 
   const onSubmit =async (fdata) => {
+   if(fdata.quantity>0){
     const deliveredQuantity = parseInt(quantity) + parseInt(fdata.quantity);
     const url = `https://tranquil-refuge-32723.herokuapp.com/products/${_id}`;
-    // fetch(url, {
-    //   method: "PUT",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify({ deliveredQuantity }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     toast("Product added successfully");
-       
-    //   });
     const {data} = await axios.put(url, {deliveredQuantity});
     setProduct(data);
     toast("Quantity added successfully");
-    fdata.target.reset()
+    reset({ quantity: '' });
+   }
+   else{
+    toast.warn("Warning! Quantity can't be less than Zero");
+    reset({ quantity: '' });
+   }
   };
   const handleSeeAll =()=>{
     navigate('/manageInventory')
@@ -79,12 +73,12 @@ const ProductDetails = () => {
           <Card.Text>Supplier: {supplierName}</Card.Text>
           <Card.Text>Price: {price}</Card.Text>
           
-          <Card.Text>Quantity: {q}</Card.Text>
+          <Card.Text>Quantity: {q>0 ? q:'sold out'}</Card.Text>
           <Card.Text>{description}</Card.Text>
         </Card.Body>
       </Card>
       <div className="d-flex justify-content-around mb-4">
-        <Button onClick={() => handleDelivered(_id)} variant="primary">
+        <Button disabled={q===0} onClick={() => handleDelivered(_id)} variant="primary">
           Delivered
         </Button>
         <div>
@@ -94,7 +88,7 @@ const ProductDetails = () => {
               type="number"
               {...register("quantity", { required: true })}
             />
-            <input type="submit" />
+            <input value='Re-Stock' type="submit" />
           </form>
         </div>
       </div>
