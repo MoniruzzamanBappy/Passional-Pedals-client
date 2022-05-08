@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Feature from "../Feature/Feature";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
+import Loading from './../Loading/Loading';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -17,6 +18,9 @@ const Home = () => {
   const handleSeeAll = () => {
     navigate("/manageInventory");
   };
+  if (!products){
+    <Loading></Loading>
+  }
   const handleSubmitContact = (event)=>{
     event.preventDefault();
     toast('Message Send')
@@ -69,8 +73,8 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <h1 className="text-center my-3">Padals Products</h1>
-      <Row xs={1} md={2} lg={3} className="container mx-auto">
+      <h1 className="text-center  my-3">Padals Products</h1>
+      <Row className="container product-cont mx-auto">
         {products.slice(0, 6).map((p) => (
           <Product key={p._id} item={p}></Product>
         ))}
@@ -83,7 +87,7 @@ const Home = () => {
       <hr className="container" />
       <h1 className="text-center my-3">About Padals</h1>
 
-      <Row xs={1} md={2} lg={3} className="container  mx-auto g-4">
+      <Row  className="container product-cont  mx-auto">
         {abouts.map((p) => (
           <AboutPadals key={p._id} item={p}></AboutPadals>
         ))}
@@ -126,7 +130,7 @@ const Home = () => {
         </Form.Group>
 
        
-        <Button variant="primary" type="submit">
+        <Button onClick={handleSubmitContact} variant="primary" type="submit">
           Send
         </Button>
       </Form>
